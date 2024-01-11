@@ -1,9 +1,10 @@
 interface Props {
 	fill?: string;
 	length?: string;
+	className?: string;
 }
 
-export const X = ({ fill, length }: Props) => {
+export const X = ({ fill, length, className }: Props) => {
 	return (
 		<svg
 			width={length || "100%"}
@@ -11,6 +12,7 @@ export const X = ({ fill, length }: Props) => {
 			viewBox="0 0 315 315"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
+			className={className}
 		>
 			<path
 				d="M3.36152 57.5025C-9.28291 23.7039 23.7039 -9.28285 57.5024 3.36158L142.76 35.2573C152.265 38.8133 162.735 38.8133 172.24 35.2573L257.497 3.36158C291.296 -9.28285 324.283 23.7039 311.638 57.5025L279.743 142.76C276.187 152.265 276.187 162.735 279.743 172.24L311.638 257.498C324.283 291.296 291.296 324.283 257.497 311.638L172.24 279.743C162.735 276.187 152.265 276.187 142.76 279.743L57.5024 311.638C23.7039 324.283 -9.28291 291.296 3.36152 257.498L35.2572 172.24C38.8132 162.735 38.8132 152.265 35.2572 142.76L3.36152 57.5025Z"
@@ -20,7 +22,7 @@ export const X = ({ fill, length }: Props) => {
 	);
 };
 
-export const O = ({ fill, length }: Props) => {
+export const O = ({ fill, length, className }: Props) => {
 	return (
 		<svg
 			width={length || "100%"}
@@ -28,6 +30,7 @@ export const O = ({ fill, length }: Props) => {
 			viewBox="0 0 315 315"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
+			className={className}
 		>
 			<path
 				d="M315 157.5C315 244.485 244.485 315 157.5 315C70.5152 315 0 244.485 0 157.5C0 70.5152 70.5152 0 157.5 0C244.485 0 315 70.5152 315 157.5Z"
