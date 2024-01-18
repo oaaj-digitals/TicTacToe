@@ -1,17 +1,7 @@
-import { styled as s, keyframes } from "styled-components";
+import { styled as s } from "styled-components";
 import { O, X } from "./Icons";
 import BgImage from "../assets/images/background.svg";
-
-const loadingFades = keyframes`
-	from {
-		opacity: 0;
-		bottom: 2.5rem;
-	}
-	to {
-		opacity: 1;
-		bottom: 0;
-	}
-`;
+import { useNavigate } from "react-router-dom";
 
 const Container = s.div`
 	width: 100%;
@@ -38,32 +28,6 @@ const Title = s.h1`
 const LogoContainer = s.div`
 	display: flex;
 	gap: 10px;
-
-	& > .animate {
-		animation-name: ${loadingFades};
-		// animation-delay: 1s;
-		animation-duration: 1s;
-		animation-timing-function: ease-in-out;
-		animation-direction: alternate;
-		animation-iteration-count: infinite;
-		animation-fill-mode: both;
-	}
-
-	& > .animate:first-child {
-		animation-delay: 0s;
-	}
-
-	& > .animate:nth-child(2) {
-		animation-delay: .3s;
-	}
-
-	& > .animate:nth-child(3) {
-		animation-delay: .6s;
-	}
-
-	& > .animate:nth-child(4) {
-		animation-delay: .9s;
-	}
 `;
 
 const StartBtn = s.a`
@@ -77,42 +41,27 @@ const StartBtn = s.a`
     transform: translateX(-50%);
 `;
 
-interface Props {
-	isLoading: boolean;
-	gameStarter: () => void;
-}
+const StartScreen = () => {
+	const navigate = useNavigate();
 
-const StartScreen = ({ isLoading, gameStarter }: Props) => {
+	const loadGame = () => {
+		setTimeout(() => {
+			navigate("/loading");
+		}, 1000);
+	};
+
 	return (
 		<Container>
 			<LogoContainer>
-				<X
-					fill={"var(--color-red-light)"}
-					length="7rem"
-					className={isLoading ? "animate" : ""}
-				/>
-				<O
-					fill={"var(--color-blue-light)"}
-					length="7rem"
-					className={isLoading ? "animate" : ""}
-				/>
-				<X
-					fill={"var(--color-red-light)"}
-					length="7rem"
-					className={isLoading ? "animate" : ""}
-				/>
-				<O
-					fill={"var(--color-blue-light)"}
-					length="7rem"
-					className={isLoading ? "animate" : ""}
-				/>
+				<X fill={"var(--color-red-light)"} length="7rem" />
+				<O fill={"var(--color-blue-light)"} length="7rem" />
+				<X fill={"var(--color-red-light)"} length="7rem" />
+				<O fill={"var(--color-blue-light)"} length="7rem" />
 			</LogoContainer>
 
-			{!isLoading && <Title>Tic Tac Toe</Title>}
+			<Title>Tic Tac Toe</Title>
 
-			<StartBtn onClick={gameStarter}>
-				{!isLoading ? "Start Now" : "Cancel"}
-			</StartBtn>
+			<StartBtn onClick={loadGame}>Start Now</StartBtn>
 		</Container>
 	);
 };
