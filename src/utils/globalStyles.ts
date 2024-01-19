@@ -1,16 +1,18 @@
 import { createGlobalStyle } from "styled-components";
 import { Theme } from "./theme";
+import Outfit from "../assets/fonts/Outfit-VariableFont_wght.ttf";
+import Kamikaze from "../assets/fonts/Kamikaze.ttf";
 
 export const GlobalStyles = createGlobalStyle`
     @font-face {
         font-family: Outfit;
-        src: url("./assets/fonts/Outfit-VariableFont_wght.ttf");
+        src: url(${Outfit});
         font-display: fallback;
     }
 
     @font-face {
         font-family: Kamikaze;
-        src: url("./assets/fonts/Kamikaze.ttf");
+        src: url(${Kamikaze});
         font-display: fallback;
     }
 
