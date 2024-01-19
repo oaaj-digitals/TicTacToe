@@ -8,16 +8,30 @@ import { useDarkMode } from "./hooks/useDarkMode";
 import StartScreen from "./components/StartScreen";
 import PlayerSelect from "./components/PlayerSelect";
 import LoadingScreen from "./components/LoadingScreen";
-import { GameContext } from "./utils/GameContext";
+import { GameContext, GamePlayers } from "./utils/GameContext";
 
 function App() {
 	const [theme, themeToggler] = useDarkMode();
 	const themeMode = theme === "light" ? lightTheme : darkTheme;
 
 	const [isLoading, setLoading] = useState(true);
+	const [players, setPlayers] = useState<GamePlayers>({
+		player1: {
+			color: "",
+			mark: "",
+			wins: 0,
+		},
+		player2: {
+			color: "",
+			mark: "",
+			wins: 0,
+		},
+	});
 
 	return (
-		<GameContext.Provider value={{ isLoading, setLoading }}>
+		<GameContext.Provider
+			value={{ isLoading, setLoading, players, setPlayers }}
+		>
 			<Router>
 				<ThemeProvider theme={themeMode}>
 					<GlobalStyles theme={themeMode} />
@@ -31,6 +45,10 @@ function App() {
 						<Route
 							path="/loading"
 							element={<LoadingScreen />}
+						></Route>
+						<Route
+							path="/setting"
+							element={<PlayerSelect />}
 						></Route>
 					</Routes>
 				</ThemeProvider>

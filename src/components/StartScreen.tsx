@@ -2,6 +2,8 @@ import { styled as s } from "styled-components";
 import { O, X } from "./Icons";
 import BgImage from "../assets/images/background.svg";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { GameContextType, GameContext } from "../utils/GameContext";
 
 const Container = s.div`
 	width: 100%;
@@ -42,10 +44,13 @@ const StartBtn = s.a`
 `;
 
 const StartScreen = () => {
+	const { setLoading } = useContext<GameContextType>(GameContext);
+
 	const navigate = useNavigate();
 
 	const loadGame = () => {
 		setTimeout(() => {
+			setLoading!(true);
 			navigate("/loading");
 		}, 1000);
 	};

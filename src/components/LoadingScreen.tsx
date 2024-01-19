@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { O, X } from "./Icons";
 import BgImage from "../assets/images/background.svg";
 import { useContext, useEffect } from "react";
-import { GameContext } from "../utils/GameContext";
+import { GameContext, GameContextType } from "../utils/GameContext";
 
 const loadingFades = keyframes`
 	from {
@@ -80,18 +80,19 @@ const LoadingScreen = () => {
 		navigate(-1);
 	};
 
-	const context = useContext(GameContext);
+	const { isLoading, setLoading } = useContext<GameContextType>(GameContext);
 
 	useEffect(() => {
 		const load = setTimeout(() => {
-			context?.isLoading ? navigate("/") : null;
+			isLoading ? navigate("/setting") : null;
 		}, 4000);
 
 		return () => {
 			clearTimeout(load);
-			context?.setLoading(false);
+			setLoading!(false);
 		};
 	}, []);
+
 	return (
 		<Container>
 			<LogoContainer>

@@ -61,15 +61,19 @@ export const GlobalStyles = createGlobalStyle`
         scroll-behavior: smooth;
     }
 
-    a {
+    a,
+    button {
         font: inherit;
         display: inline-block;
         text-decoration: none;
         color: inherit;
         cursor: pointer;
+        background: transparent;
+        border: none;
     }
 
-    a:hover {
+    a:hover,
+    button:hover {
         color: var(--color-red-dark);
     }
 
